@@ -55,11 +55,7 @@ sess.keep_alive = False
 def get_random_header():
     my_headers = [
         'Mozilla/5.0 (Windows NT 5.2) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30',
-        'Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0',
-        'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; '
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36 Edg/89.0.774.50',
-        'Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 '
-        'Safari/533.21.1']
+        'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36']
     return random.choice(my_headers)
 
 
@@ -74,15 +70,12 @@ def get_request(target_url,sleep=True):
               'authority': 'www.mzitu.com',
               'accept-encoding': 'gzip, deflate, br',
               'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-              'cache - control': 'max - age = 0',
-              'cookie': 'Hm_lvt_cb7f29be3c304cd3bb0c65a4faa96c30=1615809726,1615848017,1615897665,1615990290; Hm_lpvt_cb7f29be3c304cd3bb0c65a4faa96c30=1615990290',
-              'dnt': '1',
-              'sec-fetch-dest': 'document',
-              'sec-fetch-mode': 'navigate',
-              'sec-fetch-site': 'none',
-              'sec-fetch-user': '?1',
+              'cookie': 'Hm_lvt_cb7f29be3c304cd3bb0c65a4faa96c30=1615848017,1615897665,1615990290,1616071884; Hm_lpvt_cb7f29be3c304cd3bb0c65a4faa96c30=1616072233',
+              'sec-fetch-dest': 'empty',
+              'sec-fetch-mode': 'cors',
               'upgrade-insecure-requests': '1',
-              'sec-fetch-site': 'same-origin'
+              'sec-fetch-site': 'same-origin',
+              'x-requested-with': 'XMLHttpRequest'
               # 'Referer': 'http://www.mzitu.com'
               }
     if sleep:
@@ -197,6 +190,7 @@ def getAllSubjectsUnderTopic(topicUrl,total = 0):
 
     urls = []
     for i in range(1,total_page + 1):
+        print(topicUrl,end="\t")
         print('---- 第 %s 页 -----' % i)
         targetUrl = topicUrl + 'page/' + str(i)
         base_sp = get_url_soup(targetUrl,False)
@@ -266,7 +260,7 @@ if __name__ == '__main__':
     hot = 'https://www.mzitu.com/hot/'
     latest = 'https://www.mzitu.com/'
     getAllSubjectsUnderTopic(best)
-    # getTopicPics('',0,0)
+    getTopicPics(best,0,0)
     # getTopicPics('',0,0)
     # getTopicPics('',0,0)
     # getTopicPics('https://www.mzitu.com/tag/meitun/',6)
